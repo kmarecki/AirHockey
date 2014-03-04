@@ -62,7 +62,15 @@ public class AirHockeyRenderer implements GLSurfaceView.Renderer {
                 0.5f, 0f,
                 // Mallets
                 0f, -0.25f,
-                0f, 0.25f
+                0f, 0.25f,
+                // Triangle 1 border
+                -0.55f, -0.55f,
+                0.55f, 0.55f,
+                -0.55f, 0.55f,
+                // Triangle 2 border
+                -0.55f, -0.55f,
+                0.55f, -0.55f,
+                0.55f, 0.55f
         };
 
         vertexData = ByteBuffer
@@ -108,6 +116,9 @@ public class AirHockeyRenderer implements GLSurfaceView.Renderer {
     public void onDrawFrame(GL10 gl10) {
         glClear(GL_COLOR_BUFFER_BIT);
 
+        glUniform4f(uColorLocation, 0.0f, 1.0f, 0.0f, 1.0f);
+        glDrawArrays(GL_TRIANGLES, 10, 6);
+
         glUniform4f(uColorLocation, 1.0f, 1.0f, 1.0f, 1.0f);
         glDrawArrays(GL_TRIANGLES, 0, 6);
 
@@ -118,7 +129,6 @@ public class AirHockeyRenderer implements GLSurfaceView.Renderer {
         glDrawArrays(GL_POINTS, 8, 1);
 
         glUniform4f(uColorLocation, 1.0f, 0.0f, 0.0f, 1.0f);
-        glDrawArrays(GL_POINTS, 8, 1);
-
+        glDrawArrays(GL_POINTS, 9, 1);
     }
 }
